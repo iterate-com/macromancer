@@ -6,11 +6,11 @@ This script intercepts superwhisper transcriptions and lets you write typescript
 functions to handle them. The functions are passed the transcriptions and the
 active application context, so you can do lots of neat things like:
 
-| Command              | Action                                                              | Conditions    |
-| -------------------- | ------------------------------------------------------------------- | ------------- |
-| `open file index.ts` | [Cmd]+[P]<br>Paste `index.ts`<br>[Enter]                            | VSCode/Cursor |
-| `raycast something`  | [Cmd]+[Space]<br>Paste `something`<br>[Enter]                       |               |
-| `email: hell no`     | Pipe through LLMThank you.<br />Paste LLM response<br />[Cmd] + [V] |               |
+| Command              | Action                                                    | Conditions    |
+| -------------------- | --------------------------------------------------------- | ------------- |
+| `open file index.ts` | [Cmd]+[P]<br>Paste `index.ts`<br>[Enter]                  | VSCode/Cursor |
+| `raycast something`  | [Cmd]+[Space]<br>Paste `something`<br>[Enter]             |               |
+| `email: hell no`     | Pipe through LLM<br />Paste LLM response<br />[Cmd] + [V] |               |
 
 My side-quest for the year is to spend a whole day coding while walking 20k
 steps on my treadmill desk without using my keyboard.

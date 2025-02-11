@@ -1,7 +1,7 @@
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
-import { intro, isCancel, note, outro, text } from "@clack/prompts";
+import { confirm, intro, isCancel, note, outro, text } from "@clack/prompts";
 import { $ } from "bun";
 
 async function main() {
@@ -52,10 +52,27 @@ async function main() {
 
   outro(`Successfully installed Macromancer mode to ${targetPath}`);
 
-  note("⚠️  You must now restart Superwhisper for changes to take effect!", "WARNING");
+  note(
+    "In SuperWhisper, go to Configuration and toggle 'Paste result text' off.\nDon't worry - text will still be pasted, but the script will handle it now.",
+    "STEP 1"
+  );
+  await confirm({
+    message: "Have you updated the configuration?"
+  });
 
-  console.log(
-    "Then press Cmd+Shift+K to select macromancer mode.\nTry it by saying 'Alert test test'. If it works, you should see a popup."
+  note("Please restart SuperWhisper again for the changes to take effect.", "STEP 2");
+  await confirm({
+    message: "Have you restarted superwhisper?"
+  });
+
+  note("Press Command+Shift+K to select Macromancer mode.", "STEP 3");
+  await confirm({
+    message: "Have you selected Macromancer mode?"
+  });
+
+  note(
+    "Installation complete!\nNow activate superwhisper and say 'Alert test'. If it works, you should see a popup.",
+    "SUCCESS"
   );
 }
 

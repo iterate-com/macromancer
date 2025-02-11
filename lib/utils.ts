@@ -46,7 +46,8 @@ export async function getCurrentWindow() {
 
 // Helper function to clean the start of a string
 export function cleanStart(input: string): string {
-  return input.replace(/^[^a-zA-Z0-9]+/, "");
+  const cleaned = input.replace(/^[^a-zA-Z0-9]+/, "");
+  return cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
 }
 
 // Define the context type for spell handlers
@@ -72,9 +73,8 @@ export const m = {
   startsWithAny:
     (phrases: string[]) =>
     (context: SpellContext): string | false => {
-      const match = phrases.find((phrase) =>
-        context.remainder.toLowerCase().startsWith(phrase.toLowerCase())
-      );
+      const trimmedInput = context.remainder.trim().toLowerCase();
+      const match = phrases.find((phrase) => trimmedInput.startsWith(phrase.toLowerCase()));
       return match || false;
     },
   inApp:

@@ -1,5 +1,6 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
+import dedent from "dedent";
 import { runAppleScript } from "run-applescript";
 import { type Spell, type SpellContext, cleanStart, getCurrentWindow, log } from "./lib/utils";
 
@@ -79,7 +80,11 @@ log(`\n[${new Date().toISOString()}] Transcription received: "${transcription}"`
     log("\nNo matching spells found. Copying transcription to clipboard and pasting...");
     try {
       await runAppleScript(`set the clipboard to "${transcription}"`);
-      await runAppleScript('keystroke "v" using command down');
+      await runAppleScript(dedent`
+        tell application "System Events"
+          keystroke "v" using command down
+        end tell
+      `);
       log("Copied to clipboard and pasted successfully!");
     } catch (error) {
       log(`Error copying/pasting: ${error}`);
